@@ -1,0 +1,46 @@
+/* src/index.css */
+/* Import Google Fonts for Loader */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* 
+  UPDATED STYLES for a wider/longer slider fade effect.
+  We increased the width from 100px to 300px.
+*/
+.slider-fade::before,
+.slider-fade::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  /* This width controls how long the fade/shadow is */
+  width: 300px;
+  height: 100%;
+  z-index: 2;
+}
+
+/* This is the fade on the left side */
+.slider-fade::before {
+  left: 0;
+  background: linear-gradient(to right, #000 20%, transparent 100%);
+}
+
+/* This is the fade on the right side */
+.slider-fade::after {
+  right: 0;
+  background: linear-gradient(to left, #000 20%, transparent 100%);
+}
+
+/* Hollow Text Effect */
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  color: transparent;
+}

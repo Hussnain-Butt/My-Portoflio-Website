@@ -1,0 +1,70 @@
+/* src/components/Loader.css */
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden; /* Bahar jaane wale elements ko chupaye */
+}
+
+.name-container {
+  position: relative; /* Taaki outline aur fill ek doosre ke upar aa sakein */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-name {
+  font-family: 'Montserrat', sans-serif; /* Ek professional font, aap change kar sakte hain */
+  font-weight: 900;
+  font-size: clamp(2.5rem, 10vw, 7rem); /* Responsive font size - thoda bara kiya */
+  letter-spacing: 3px;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase; /* Uppercase for better effect */
+}
+
+/* Text ka outline banane ke liye */
+.outline {
+  position: absolute;
+  color: transparent;
+  -webkit-text-stroke: 2px #c4b5fd; /* Stroke width barayi - zyada visible */
+  text-stroke: 2px #c4b5fd;
+  z-index: 10000;
+  filter: drop-shadow(0 0 20px rgba(196, 181, 253, 0.5)); /* Glow effect */
+}
+
+/* Text ka fill jo color se bharega */
+.fill {
+  color: #c4b5fd; /* Aapka primary color */
+  z-index: 10001;
+  filter: drop-shadow(0 0 30px rgba(196, 181, 253, 0.8)); /* Glow effect */
+  /* clip-path Framer Motion se control hoga */
+}
+
+/* Page cut karne wale panels - Screen ko split karenge */
+.loader-reveal-panel {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 50vh; /* Exactly half screen */
+  background-color: #000000;
+  z-index: 10002; /* Naam ke upar - screen ko cover karega */
+  will-change: transform; /* Performance optimization */
+}
+
+.loader-reveal-panel.top {
+  top: 0;
+  /* Initially center tak aayega - naam ko cover karega */
+}
+
+.loader-reveal-panel.bottom {
+  bottom: 0;
+  /* Initially center tak aayega - naam ko cover karega */
+}

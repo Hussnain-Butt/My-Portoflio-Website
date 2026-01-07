@@ -1,0 +1,126 @@
+// src/components/Hero.js
+
+import React from 'react'
+import { motion } from 'framer-motion'
+import TechSlider from './TechSlider'
+import Header from './Header'
+import Background3D from './Background3D'
+import { PERSONAL_INFO } from '../constants'
+
+// --- ANIMATION VARIANTS (Kinetic/Stagger) ---
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.3,
+    },
+  },
+}
+
+const textRevealVariants = {
+  hidden: { y: 100, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      damping: 20,
+      stiffness: 100,
+    },
+  },
+}
+
+const Hero = () => {
+  return (
+    <div className="relative min-h-screen bg-black text-white overflow-hidden flex flex-col selection:bg-purple-500/30 selection:text-purple-200">
+      {/* 1. BACKGROUND LAYERS */}
+      <Background3D />
+
+      {/* Subtle Gradient Glows (Dimmed for legibility) */}
+      <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-purple-900/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-indigo-900/10 rounded-full blur-[150px] pointer-events-none" />
+
+      {/* 2. HEADER */}
+      {/* Explicit Z-index ensure it stays on top. Fixed positioning handled inside Header component, but we wrap it here cleanly. */}
+      <div className="relative z-50">
+        <Header />
+      </div>
+
+      {/* 3. MAIN CONTENT */}
+      {/* Added pt-32 sm:pt-48 to push content DOWN away from header. No more merging. */}
+      <main className="flex-grow flex flex-col justify-center items-center relative z-10 px-6 pt-32 sm:pt-48 pb-12">
+        <motion.div
+          className="max-w-7xl w-full flex flex-col items-start justify-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+
+          {/* SMALL OPENER (Masked Reveal) */}
+          <div className="overflow-hidden mb-4">
+            <motion.p
+              variants={textRevealVariants}
+              className="text-purple-400 font-mono text-sm sm:text-base tracking-widest uppercase"
+            >
+              — {PERSONAL_INFO.intro}
+            </motion.p>
+          </div>
+
+          {/* GIANT NAME (Masked Kinetic Reveal) */}
+          <div className="overflow-hidden">
+            <motion.h1
+              variants={textRevealVariants}
+              className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-[0.9] sm:leading-[0.9] mb-4 sm:mb-6"
+            >
+              {PERSONAL_INFO.name.split(' ')[0]} <br className="sm:hidden" />
+              <span className="text-gray-500">{PERSONAL_INFO.name.split(' ')[1]}</span>
+            </motion.h1>
+          </div>
+
+          {/* DESCRIPTION (Fade Up) */}
+          <motion.p
+            variants={textRevealVariants}
+            className="max-w-2xl mt-4 text-lg sm:text-xl md:text-2xl text-gray-400 font-light leading-relaxed"
+          >
+            {PERSONAL_INFO.role} based in the digital realm. <br className="hidden sm:block" />
+            <span className="text-gray-500 text-base sm:text-lg mt-2 block">{PERSONAL_INFO.description}</span>
+          </motion.p>
+
+          {/* BUTTONS */}
+          <motion.div
+            variants={textRevealVariants}
+            className="mt-12 flex flex-col sm:flex-row gap-5 items-start sm:items-center w-full"
+          >
+            {/* Primary Button - Solid with Hover Lift */}
+            <a
+              href="#projects"
+              className="group relative px-8 py-4 bg-white text-black font-bold text-sm tracking-widest uppercase rounded-sm overflow-hidden transition-transform hover:-translate-y-1"
+            >
+              <span className="relative z-10">See Selected Work</span>
+              <div className="absolute inset-0 bg-purple-200 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
+            </a>
+
+            {/* Secondary Button - Link Style */}
+            <a
+              href="#contact"
+              className="text-gray-400 font-medium text-sm tracking-widest uppercase hover:text-white transition-colors flex items-center gap-3 group"
+            >
+              Let's Talk
+              <span className="block w-8 h-[1px] bg-gray-600 group-hover:bg-white transition-colors" />
+            </a>
+          </motion.div>
+
+        </motion.div>
+      </main>
+
+      {/* 4. FOOTER / SLIDER */}
+      <div className="relative z-20 mt-auto w-full border-t border-white/5 pt-6 bg-black/50 backdrop-blur-sm">
+        <TechSlider />
+      </div>
+    </div>
+  )
+}
+
+export default Hero
