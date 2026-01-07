@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { ArrowUpRight, Loader2 } from 'lucide-react'
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5000'
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
 const ProjectItem = ({ project, index, setModal }) => {
   return (

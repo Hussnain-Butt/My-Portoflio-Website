@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthContext'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5000'
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
 // Modal Component
 const Modal = ({ isOpen, onClose, title, children }) => {
