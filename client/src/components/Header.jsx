@@ -95,7 +95,7 @@ const Header = () => {
           : 'py-6 bg-transparent'
           }`}
       >
-        <div className="container mx-auto px-6 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
           <div className="relative z-50 group cursor-pointer">
             <a
               href="#home"

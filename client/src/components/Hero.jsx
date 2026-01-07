@@ -62,7 +62,7 @@ const Hero = () => {
           <div className="overflow-hidden mb-4">
             <motion.p
               variants={textRevealVariants}
-              className="text-purple-400 font-mono text-sm sm:text-base tracking-widest uppercase"
+              className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-mono text-sm sm:text-base tracking-widest uppercase font-semibold"
             >
               — {PERSONAL_INFO.intro}
             </motion.p>
@@ -82,10 +82,9 @@ const Hero = () => {
           {/* DESCRIPTION (Fade Up) */}
           <motion.p
             variants={textRevealVariants}
-            className="max-w-2xl mt-4 text-lg sm:text-xl md:text-2xl text-gray-400 font-light leading-relaxed"
+            className="max-w-xl mt-4 text-lg sm:text-xl md:text-2xl text-gray-300 font-light leading-relaxed"
           >
-            {PERSONAL_INFO.role} based in the digital realm. <br className="hidden sm:block" />
-            <span className="text-gray-500 text-base sm:text-lg mt-2 block">{PERSONAL_INFO.description}</span>
+            {PERSONAL_INFO.role} based in the digital realm.
           </motion.p>
 
           {/* BUTTONS */}
@@ -102,13 +101,15 @@ const Hero = () => {
               <div className="absolute inset-0 bg-purple-200 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out" />
             </a>
 
-            {/* Secondary Button - Link Style */}
+            {/* Secondary Button - Enhanced Visibility */}
             <a
               href="#contact"
-              className="text-gray-400 font-medium text-sm tracking-widest uppercase hover:text-white transition-colors flex items-center gap-3 group"
+              className="group relative px-6 py-3 border border-white/20 hover:border-purple-500/50 rounded-sm text-white font-medium text-sm tracking-widest uppercase hover:bg-purple-500/10 transition-all duration-300 flex items-center gap-3"
             >
               Let's Talk
-              <span className="block w-8 h-[1px] bg-gray-600 group-hover:bg-white transition-colors" />
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </a>
           </motion.div>
 
