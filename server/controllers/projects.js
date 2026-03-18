@@ -3,7 +3,7 @@ import Project from '../models/Project.js';
 // GET ALL PROJECTS
 export const getProjects = async (req, res) => {
     try {
-        const projects = await Project.find().sort({ createdAt: -1 }); // Newest first
+        const projects = await Project.find().sort({ order: 1, createdAt: -1 }); // Custom order first, then newest first
         res.status(200).json(projects);
     } catch (err) {
         res.status(404).json({ message: err.message });

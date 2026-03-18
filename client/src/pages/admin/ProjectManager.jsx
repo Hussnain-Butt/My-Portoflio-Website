@@ -186,7 +186,8 @@ const ProjectForm = ({ project, onSubmit, onCancel, loading, token }) => {
         gallery: project?.gallery?.join('\n') || '',
         repo: project?.repo || '',
         liveDemo: project?.liveDemo || '',
-        isFeatured: project?.isFeatured || false
+        isFeatured: project?.isFeatured || false,
+        order: project?.order || 0
     })
 
     const handleChange = (e) => {
@@ -224,6 +225,20 @@ const ProjectForm = ({ project, onSubmit, onCancel, loading, token }) => {
                     className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg text-white focus:outline-none focus:border-purple-500 transition-colors"
                     placeholder="Project Title"
                 />
+            </div>
+
+            {/* Order */}
+            <div>
+                <label className="block text-sm font-medium text-gray-400 mb-1">Display Order</label>
+                <input
+                    type="number"
+                    name="order"
+                    value={formData.order}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg text-white focus:outline-none focus:border-purple-500 transition-colors"
+                    placeholder="0"
+                />
+                <p className="text-xs text-gray-500 mt-1">Lower numbers show up first (e.g., 1, 2, 3...)</p>
             </div>
 
             {/* Role & Year */}
@@ -556,7 +571,7 @@ const ProjectManager = () => {
                                 <th className="text-left px-6 py-4 text-xs font-medium text-gray-400 uppercase tracking-wider">Project</th>
                                 <th className="text-left px-6 py-4 text-xs font-medium text-gray-400 uppercase tracking-wider">Role</th>
                                 <th className="text-left px-6 py-4 text-xs font-medium text-gray-400 uppercase tracking-wider">Year</th>
-                                <th className="text-left px-6 py-4 text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
+                                <th className="text-left px-6 py-4 text-xs font-medium text-gray-400 uppercase tracking-wider">Order</th>
                                 <th className="text-left px-6 py-4 text-xs font-medium text-gray-400 uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
@@ -597,6 +612,11 @@ const ProjectManager = () => {
                                                 </a>
                                             )}
                                         </div>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <span className="text-sm font-mono text-purple-400 bg-purple-400/10 px-2 py-1 rounded">
+                                            {project.order || 0}
+                                        </span>
                                     </td>
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-2">
