@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, CalendarDays, Download } from 'lucide-react'
 import { PERSONAL_INFO } from '../constants'
 import ContactForm from './ContactForm'
 
@@ -57,18 +57,41 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:border-l lg:border-white/10 lg:pl-16 xl:pl-24"
           >
-            {/* Start a Project Link */}
-            <a
-              href={`mailto:${PERSONAL_INFO.email}`}
-              className="group flex items-center justify-between mb-12 cursor-pointer"
-            >
-              <h3 className="text-3xl lg:text-4xl xl:text-5xl font-light text-white group-hover:text-gray-300 transition-colors duration-300">
-                Start a Project
-              </h3>
-              <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-purple-500 group-hover:border-purple-500 transition-all duration-300">
-                <ArrowRight className="w-5 h-5 text-white transition-colors duration-300" />
+            <div className="mb-12 space-y-4">
+              <a
+                href={`mailto:${PERSONAL_INFO.email}`}
+                className="group flex items-center justify-between cursor-pointer"
+              >
+                <h3 className="text-3xl lg:text-4xl xl:text-5xl font-light text-white group-hover:text-gray-300 transition-colors duration-300">
+                  Start a Project
+                </h3>
+                <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-purple-500 group-hover:border-purple-500 transition-all duration-300">
+                  <ArrowRight className="w-5 h-5 text-white transition-colors duration-300" />
+                </div>
+              </a>
+
+              <div className="flex flex-wrap gap-3">
+                {PERSONAL_INFO.bookingUrl && (
+                  <a
+                    href={PERSONAL_INFO.bookingUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 border border-white/15 px-4 py-2 text-sm text-white hover:border-purple-400 hover:text-purple-300 transition-colors"
+                  >
+                    <CalendarDays className="w-4 h-4" />
+                    Book a Call
+                  </a>
+                )}
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="inline-flex items-center gap-2 border border-white/15 px-4 py-2 text-sm text-white hover:border-purple-400 hover:text-purple-300 transition-colors"
+                >
+                  <Download className="w-4 h-4" />
+                  Download Resume
+                </a>
               </div>
-            </a>
+            </div>
 
             {/* Contact Details */}
             <div className="space-y-4 mb-10">

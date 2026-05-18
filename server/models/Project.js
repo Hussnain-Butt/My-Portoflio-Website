@@ -8,6 +8,7 @@ const projectSchema = new mongoose.Schema({
     },
     description: String,
     challenge: String,
+    constraints: String,
     solution: String,
     impact: String,
     role: String,

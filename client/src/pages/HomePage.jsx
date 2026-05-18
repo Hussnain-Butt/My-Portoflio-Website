@@ -4,13 +4,12 @@ import Hero from '../components/Hero'
 import Services from '../components/Services'
 import ProfessionalWork from '../components/Projects'
 import Workflow from '../components/Workflow'
-import Testimonials from '../components/Testimonials'
+import SelectedOutcomes from '../components/SelectedOutcomes'
 import TechStack from '../components/TechStack'
 import Experience from '../components/Experience'
 import About from '../components/About'
 import Socials from '../components/Socials'
 import FAQ from '../components/FAQ'
-import CTA from '../components/CTA'
 import Contact from '../components/Contact'
 
 const HomePage = () => {
@@ -24,7 +23,7 @@ const HomePage = () => {
         <Experience />
         <Workflow />
         <ProfessionalWork />
-        <Testimonials />
+        <SelectedOutcomes />
         <About />
         <Socials />
         <FAQ />

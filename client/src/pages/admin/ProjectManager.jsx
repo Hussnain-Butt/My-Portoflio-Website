@@ -175,6 +175,7 @@ const ProjectForm = ({ project, onSubmit, onCancel, loading, token }) => {
         title: project?.title || '',
         description: project?.description || '',
         challenge: project?.challenge || '',
+        constraints: project?.constraints || '',
         solution: project?.solution || '',
         impact: project?.impact || '',
         role: project?.role || '',
@@ -331,6 +332,19 @@ const ProjectForm = ({ project, onSubmit, onCancel, loading, token }) => {
                     rows={3}
                     className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg text-white focus:outline-none focus:border-purple-500 transition-colors resize-none"
                     placeholder="What was the main challenge?"
+                />
+            </div>
+
+            {/* Constraints */}
+            <div>
+                <label className="block text-sm font-medium text-gray-400 mb-1">Constraints</label>
+                <textarea
+                    name="constraints"
+                    value={formData.constraints}
+                    onChange={handleChange}
+                    rows={3}
+                    className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg text-white focus:outline-none focus:border-purple-500 transition-colors resize-none"
+                    placeholder="Technical, product, compliance, or delivery constraints..."
                 />
             </div>
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowUpRight, Loader2 } from 'lucide-react'
 import axios from 'axios'
 
@@ -13,10 +13,6 @@ const ProjectDetails = () => {
     const [allProjects, setAllProjects] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-
-    const { scrollY } = useScroll()
-    const y = useTransform(scrollY, [0, 500], [0, 200])
-    const opacity = useTransform(scrollY, [0, 500], [1, 0])
 
     useEffect(() => {
         const fetchProject = async () => {
@@ -172,24 +168,36 @@ const ProjectDetails = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
                     {/* Left Column: Narrative */}
                     <div className="lg:col-span-8 space-y-16">
-                        {/* Challenge */}
+                        {/* Problem */}
                         {project.challenge && (
                             <section>
-                                <h3 className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-6">The Challenge</h3>
+                                <h3 className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-6">Problem</h3>
                                 <p className="text-lg md:text-xl leading-relaxed text-gray-200 font-light">
                                     {project.challenge}
                                 </p>
                             </section>
                         )}
 
-                        {/* Solution */}
+                        {/* Constraints */}
+                        {project.constraints && (
+                            <section>
+                                <h3 className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-6">Constraints</h3>
+                                <p className="text-lg md:text-xl leading-relaxed text-gray-200 font-light">
+                                    {project.constraints}
+                                </p>
+                            </section>
+                        )}
+
+                        {/* Approach */}
                         {project.solution && (
                             <section>
-                                <h3 className="text-purple-400 font-mono text-xs uppercase tracking-widest mb-6">My Solution</h3>
+                                <h3 className="text-purple-400 font-mono text-xs uppercase tracking-widest mb-6">Approach</h3>
                                 <p className="text-lg md:text-xl leading-relaxed text-gray-200 font-light mb-8">
                                     {project.solution}
                                 </p>
                                 {project.impact && (
+                                    <>
+                                        <h4 className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-4">Outcome</h4>
                                     <ul className="space-y-4 border-l-2 border-purple-500/20 pl-6">
                                         {project.impact.split('.').map((point, i) => (
                                             point.trim() && (
@@ -199,6 +207,7 @@ const ProjectDetails = () => {
                                             )
                                         ))}
                                     </ul>
+                                    </>
                                 )}
                             </section>
                         )}
@@ -252,6 +261,11 @@ const ProjectDetails = () => {
                                     <p className="text-white font-mono text-sm">{project.timeline}</p>
                                 </div>
                             )}
+
+                            <div className="mt-8 pt-8 border-t border-white/10">
+                                <h4 className="text-gray-500 text-xs uppercase mb-2">Format</h4>
+                                <p className="text-white font-mono text-sm">{isMobileProject ? 'Mobile App' : 'Web Product'}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

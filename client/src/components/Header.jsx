@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { NAV_LINKS, PERSONAL_INFO } from '../constants'
+import { NAV_LINKS, PERSONAL_INFO, SOCIAL_LINKS } from '../constants'
 
 // --- ANIMATION VARIANTS ---
 const menuVariants = {
@@ -206,13 +206,15 @@ const Header = () => {
                   {PERSONAL_INFO.email}
                 </a>
                 <div className="flex gap-4 sm:gap-6 mt-4 sm:mt-8">
-                  {['LinkedIn', 'GitHub'].map((social) => (
+                  {SOCIAL_LINKS.map((social) => (
                     <a
-                      key={social}
-                      href="#"
+                      key={social.name}
+                      href={social.url}
+                      target="_blank"
+                      rel="noreferrer"
                       className="text-gray-500 hover:text-white text-[10px] sm:text-xs uppercase tracking-widest transition-colors"
                     >
-                      {social}
+                      {social.name}
                     </a>
                   ))}
                 </div>
