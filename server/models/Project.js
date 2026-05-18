@@ -14,6 +14,11 @@ const projectSchema = new mongoose.Schema({
     year: String,
     client: String,
     timeline: String,
+    projectType: {
+        type: String,
+        enum: ['web', 'mobile'],
+        default: 'web'
+    },
     tags: [String],
     img: String, // Main image URL (Cloudinary)
     gallery: [String], // Array of image URLs

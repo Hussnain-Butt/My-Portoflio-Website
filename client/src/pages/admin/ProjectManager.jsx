@@ -181,6 +181,7 @@ const ProjectForm = ({ project, onSubmit, onCancel, loading, token }) => {
         year: project?.year || new Date().getFullYear().toString(),
         client: project?.client || '',
         timeline: project?.timeline || '',
+        projectType: project?.projectType || 'web',
         tags: project?.tags?.join(', ') || '',
         img: project?.img || '',
         gallery: project?.gallery?.join('\n') || '',
@@ -293,6 +294,20 @@ const ProjectForm = ({ project, onSubmit, onCancel, loading, token }) => {
                 </div>
             </div>
 
+            {/* Project Type */}
+            <div>
+                <label className="block text-sm font-medium text-gray-400 mb-1">Project Type</label>
+                <select
+                    name="projectType"
+                    value={formData.projectType}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-lg text-white focus:outline-none focus:border-purple-500 transition-colors"
+                >
+                    <option value="web">Website / Web App</option>
+                    <option value="mobile">Mobile App</option>
+                </select>
+            </div>
+
             {/* Description */}
             <div>
                 <label className="block text-sm font-medium text-gray-400 mb-1">Description</label>
@@ -364,7 +379,6 @@ const ProjectForm = ({ project, onSubmit, onCancel, loading, token }) => {
                 value={formData.img}
                 onChange={(url) => setFormData(prev => ({ ...prev, img: url }))}
                 token={token}
-                multiple={true}
             />
 
             {/* Gallery Upload */}

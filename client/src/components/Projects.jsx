@@ -5,6 +5,12 @@ import { ArrowUpRight, Loader2 } from 'lucide-react'
 import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+const isMobileProject = (project) => {
+  const normalizedTags = project.tags?.map((tag) => tag.toLowerCase()) || []
+  return project.projectType === 'mobile'
+    || normalizedTags.includes('react native')
+    || normalizedTags.includes('expo')
+}
 
 const ProjectItem = ({ project, index, setModal }) => {
   return (
@@ -86,7 +92,7 @@ const Modal = ({ modal, items }) => {
                   <img
                     src={project.img}
                     alt={project.title}
-                    className="h-full w-full object-cover grayscale transition-transform duration-700"
+                    className={`h-full w-full grayscale transition-transform duration-700 ${isMobileProject(project) ? 'object-contain bg-neutral-950' : 'object-cover'}`}
                   />
                   {/* Overlay Gradient for professionalism */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />

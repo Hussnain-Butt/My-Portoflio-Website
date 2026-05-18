@@ -74,6 +74,10 @@ const ProjectDetails = () => {
     }
 
     const nextProject = getNextProject()
+    const normalizedTags = project.tags?.map((tag) => tag.toLowerCase()) || []
+    const isMobileProject = project.projectType === 'mobile'
+        || normalizedTags.includes('react native')
+        || normalizedTags.includes('expo')
 
     return (
         <div className="bg-black min-h-screen text-white">
@@ -92,11 +96,21 @@ const ProjectDetails = () => {
             <header className="relative w-full h-[70vh] flex items-end pb-20">
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10" />
-                    <img
-                        src={project.img}
-                        alt={project.title}
-                        className="w-full h-full object-cover opacity-60"
-                    />
+                    {isMobileProject ? (
+                        <div className="w-full h-full bg-neutral-950 flex items-center justify-center px-6 pt-20 pb-10">
+                            <img
+                                src={project.img}
+                                alt={project.title}
+                                className="h-full max-h-[58vh] w-auto max-w-full object-contain opacity-80"
+                            />
+                        </div>
+                    ) : (
+                        <img
+                            src={project.img}
+                            alt={project.title}
+                            className="w-full h-full object-cover opacity-60"
+                        />
+                    )}
                 </div>
 
                 <div className="container mx-auto px-6 max-w-7xl relative z-20">
@@ -193,16 +207,26 @@ const ProjectDetails = () => {
                         {project.gallery && project.gallery.length > 0 && (
                             <section className="space-y-6">
                                 <h3 className="text-gray-500 font-mono text-xs uppercase tracking-widest">Project Gallery</h3>
-                                <div className="grid grid-cols-1 gap-8">
+                                <div className={isMobileProject ? 'grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center' : 'grid grid-cols-1 gap-8'}>
                                     {project.gallery.map((img, i) => (
                                         <motion.div
                                             key={i}
                                             initial={{ opacity: 0, y: 20 }}
                                             whileInView={{ opacity: 1, y: 0 }}
                                             viewport={{ once: true }}
-                                            className="rounded-xl overflow-hidden border border-white/10 bg-white/5"
+                                            className={isMobileProject
+                                                ? 'w-full max-w-[360px] rounded-2xl overflow-hidden border border-white/10 bg-white/5 p-3'
+                                                : 'rounded-xl overflow-hidden border border-white/10 bg-white/5'
+                                            }
                                         >
-                                            <img src={img} alt={`Screenshot ${i + 1}`} className="w-full h-auto hover:scale-105 transition-transform duration-700" />
+                                            <img
+                                                src={img}
+                                                alt={`Screenshot ${i + 1}`}
+                                                className={isMobileProject
+                                                    ? 'w-full h-auto rounded-xl object-contain'
+                                                    : 'w-full h-auto hover:scale-105 transition-transform duration-700'
+                                                }
+                                            />
                                         </motion.div>
                                     ))}
                                 </div>
