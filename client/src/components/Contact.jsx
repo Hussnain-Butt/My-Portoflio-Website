@@ -83,8 +83,8 @@ const Contact = () => {
                   </a>
                 )}
                 <a
-                  href="/resume.pdf"
-                  download
+                  href="/Muhammad_Hussain_Resume.pdf"
+                  download="Muhammad_Hussain_Resume.pdf"
                   className="inline-flex items-center gap-2 border border-white/15 px-4 py-2 text-sm text-white hover:border-purple-400 hover:text-purple-300 transition-colors"
                 >
                   <Download className="w-4 h-4" />
