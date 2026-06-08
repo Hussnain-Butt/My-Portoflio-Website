@@ -84,41 +84,22 @@ export const WORKFLOW = [
   },
 ]
 
-// `icon` maps to a Lucide icon in TechStack.jsx. `highlight: true` gives the
-// card the glowing AI/ML treatment.
 export const SKILLS = [
   {
-    category: 'Frontend',
-    icon: 'Layout',
-    items: ['React.js', 'Next.js', 'TypeScript', 'Redux Toolkit', 'Zustand', 'Tailwind CSS', 'Framer Motion'],
+    category: 'Frontend Engineering',
+    items: ['React', 'Next.js', 'TypeScript', 'Redux Toolkit', 'Tailwind CSS', 'Framer Motion', 'Zustand'],
   },
   {
-    category: 'Backend',
-    icon: 'Server',
-    items: ['Node.js', 'Express.js', 'FastAPI', 'Microservices', 'REST & GraphQL', 'Redis'],
+    category: 'Backend & Databases',
+    items: ['Node.js', 'Express.js', 'FastAPI', 'PostgreSQL', 'MongoDB', 'Redis', 'Prisma ORM'],
   },
   {
-    category: 'Database',
-    icon: 'Database',
-    items: ['MongoDB', 'PostgreSQL', 'Prisma ORM', 'Vector DBs'],
+    category: 'AI & Machine Learning',
+    items: ['OpenAI API', 'Claude API', 'Google Gemini', 'LangChain', 'RAG Systems', 'Vector DBs', 'Prompt Engineering'],
   },
   {
-    category: 'AI / ML Integration',
-    icon: 'Sparkles',
-    highlight: true,
-    items: [
-      'LLM APIs (OpenAI · Claude · Gemini)',
-      'LangChain & RAG',
-      'Custom ML Pipelines',
-      'Autonomous Agents (Hermes)',
-      'Automated Content Generation',
-      'Vector Search',
-    ],
-  },
-  {
-    category: 'DevOps & Deployment',
-    icon: 'Rocket',
-    items: ['Docker', 'CI/CD Pipelines', 'Digital Ocean', 'Railway', 'Dedicated VPS', 'Nginx', 'Vercel'],
+    category: 'Cloud & DevOps',
+    items: ['AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Railway', 'Vercel', 'Nginx'],
   },
 ]
 
